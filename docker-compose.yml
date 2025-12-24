@@ -1,0 +1,6 @@
+services:
+  database:
+    image: postgres:latest
+    shm_size : 129mb
+    env_file:
+      - ./.env
