@@ -1,6 +1,6 @@
 services:
   quick-list-app:
-    build: ./src/QuickList.App/Dockerfile
+    build: ./src/QuickList.App
     ports:
       - 5000:80
     volumes:

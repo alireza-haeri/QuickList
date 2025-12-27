@@ -8,5 +8,5 @@ public class Todo
     public DateTime CreateAt { get; private set; }
 
     public static Todo Create(string task, string description) =>
-        new() { Id = Guid.NewGuid(), Task = task, Description = description, CreateAt = DateTime.Now};
+        new() { Id = Guid.NewGuid(), Task = task, Description = description, CreateAt = DateTime.UtcNow};
 }
