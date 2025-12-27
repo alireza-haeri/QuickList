@@ -16,11 +16,18 @@ builder.Services.AddSwaggerGen();
 var app = builder.Build();
 
 app.UseRouting();
-
 app.MapTodoEndpoints();
 
-app.UseSwagger();
-app.UseSwaggerUI();
+if (app.Environment.IsDevelopment())
+{
+    //Config Swagger
+    app.UseSwagger();
+    app.UseSwaggerUI();
+    
+    //Auto Migration
+    using var scope = app.Services.CreateScope();
+    var db = scope.ServiceProvider.GetRequiredService<AppDbContext>();
+    db.Database.Migrate();
+}
 
 app.Run();
-

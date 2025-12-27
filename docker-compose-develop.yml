@@ -1,0 +1,24 @@
+services:
+  quick-list-app:
+    build:
+      context: ./src/QuickList.App
+      target: development
+    ports:
+      - 5000:80
+    volumes:
+      - ./src/QuickList.App:/app
+      - /app/obj
+      - /app/bin
+    depends_on:
+      database:
+        condition: service_healthy
+  database:
+    shm_size : 129mb
+    ports:
+      - 5432:5432
+    volumes:
+      - ./data/postgres:/var/lib/postgresql
+
+networks:
+  quicklist-net:
+    driver: bridge

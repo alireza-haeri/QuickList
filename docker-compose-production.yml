@@ -1,0 +1,40 @@
+services:
+  quick-list-app:
+    image: quicklist:latest
+    ports:
+      - target: 8080
+        published: 2525
+        protocol: tcp
+        mode: ingress
+    volumes:
+      - /app/obj
+      - /app/bin
+    deploy:
+      replicas: 1
+      # restart_policy: 
+      #   condition: on-failure
+      # update_config:
+      #   parallelism: 1
+      #   delay: 10s
+    depends_on:
+      - database
+    environment:
+      - ASPNETCORE_URLS=http://0.0.0.0:8080
+  database:
+    deploy:
+      replicas: 1
+      restart_policy: 
+        condition: on-failure
+      update_config:
+        parallelism: 1
+        delay: 10s
+    volumes:
+      - postgres_data:/var/lib/postgresql
+
+networks:
+  quicklist-net:
+    driver: overlay
+
+volumes:
+  postgres_data:
+    name: "postgres_data"
