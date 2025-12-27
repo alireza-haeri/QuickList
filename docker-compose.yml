@@ -1,4 +1,13 @@
 services:
+  quick-list-app:
+    build: ./src/QuickList.App/Dockerfile
+    ports:
+      - 5000:80
+    volumes:
+      - ./src/QuickList.App:/app:ro
+      - /app/obj
+      - /app/bin
+    command: dotnet watch run --urls http://0.0.0.0:80
   database:
     image: postgres:latest
     shm_size : 129mb
