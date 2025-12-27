@@ -1,4 +1,5 @@
 using Microsoft.EntityFrameworkCore;
+using QuickList.App.Shared;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -7,7 +8,6 @@ builder.Services.AddDbContext<AppDbContext>(options =>
         builder.Configuration.GetConnectionString("DefaultConnection")
     )
 );
-
 
 var app = builder.Build();
 

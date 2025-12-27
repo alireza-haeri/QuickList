@@ -7,6 +7,6 @@ public class Todo
     public string Description { get; private set; }
     public DateTime CreateAt { get; private set; }
 
-    public static Todo Create(string task, string Description) =>
-        new() { Id = Guid.NewGuid(), Task = task, Description = Description };
+    public static Todo Create(string task, string description) =>
+        new() { Id = Guid.NewGuid(), Task = task, Description = description, CreateAt = DateTime.Now};
 }
